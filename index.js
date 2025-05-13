@@ -4,7 +4,7 @@ config();
 import { Telegraf, Scenes, session } from "telegraf";
 import mongoose from "mongoose";
 
-// === MongoDB model ===
+
 const appointmentSchema = new mongoose.Schema({
   fullName: String,
   address: String,
@@ -15,7 +15,7 @@ const appointmentSchema = new mongoose.Schema({
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);
 
-// === Wizard Scene ===
+
 const appointmentWizard = new Scenes.WizardScene(
   "appointment-wizard",
 
@@ -89,7 +89,7 @@ const appointmentWizard = new Scenes.WizardScene(
   }
 );
 
-// === Bot setup ===
+
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const stage = new Scenes.Stage([appointmentWizard]);
 
@@ -126,7 +126,7 @@ bot.hears("📞 Bog‘lanish", (ctx) => {
   ctx.reply("Bog‘lanish uchun: @baxtiyarovich_0102 yoki +998 93 164 64 79");
 });
 
-// === MongoDB ulanish va botni ishga tushurish ===
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
